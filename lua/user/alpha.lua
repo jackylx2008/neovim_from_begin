@@ -35,7 +35,7 @@ dashboard.section.buttons.val = {
 	dashboard.button("r", "  Recently used files", ":Telescope oldfiles <CR>"),
 	-- dashboard.button("t", "  Find text", ":Telescope live_grep <CR>"),
 	dashboard.button("c", "  Configuration", ":e ~/.config/nvim/init.lua <CR>"),
-	dashboard.button("q", "  Quit Neovim", ":qa<CR>"),
+	dashboard.button("q", "  Quit", ":qa<CR>"),
 }
 
 local function footer()
@@ -44,11 +44,11 @@ local function footer()
     local datetime = os.date "%d-%m-%Y  %H:%M:%S"
     -- local plugins_text = "\t" .. total_plugins .. " plugins  " .. datetime
 
-    -- Quote
-    local fortune = require "alpha.fortune"
-    local quote = table.concat(fortune(), "\n")
+    -- -- Quote
+    -- local fortune = require "alpha.fortune"
+    -- local quote = table.concat(fortune(), "\n")
 
-    return datetime .. "\n" .. quote
+    return datetime .. "\n"
 end
 
 dashboard.section.footer.val = footer()
