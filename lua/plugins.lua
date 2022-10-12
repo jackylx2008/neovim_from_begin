@@ -44,12 +44,34 @@ return packer.startup(function(use)
   use({ "nvim-lua/plenary.nvim" }) -- Useful lua functions used by lots of plugins
 
   -- Colorschemes
-  use({ "sainnhe/everforest" })
+  use({ 
+      "sainnhe/everforest",
+      config = function()
+        vim.cmd([[colorscheme everforest]])  
+      end,
+  })
   -- Startup Screen
-  use({ "goolord/alpha-nvim" })
+  use({ 
+      "goolord/alpha-nvim",
+      config = function()
+        require("config.alpha").setup()
+      end,
+  })
   -- Git
-  use({ "TimUntersberger/neogit" })
-  use "folke/which-key.nvim"
+  use({ 
+      "TimUntersberger/neogit",
+      cmd = "Neogit",
+      config = function()
+        require("config.neogit").setup()
+      end,
+  })
+  use({
+      "folke/which-key.nvim",
+      event = "VimEnter",
+      config = function()
+        require("config.whichkey").setup()
+      end,
+  })
 
   
   
