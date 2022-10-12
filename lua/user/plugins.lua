@@ -49,6 +49,7 @@ return packer.startup(function(use)
   use({ "goolord/alpha-nvim" })
   -- Git
   use({ "TimUntersberger/neogit" })
+  use "folke/which-key.nvim"
 
   
   
