@@ -125,7 +125,8 @@ function M.setup()
   
     p = {
       name = "Packer",
-      c = { "<cmd>PackerCompile<cr>", "Compile" },
+      c = { "<cmd>PackerCompile profile=true<cr>", "Compile" },
+      p = { "<cmd>PackerProfile<cr>", "Profile" },
       i = { "<cmd>PackerInstall<cr>", "Install" },
       s = { "<cmd>PackerSync<cr>", "Sync" },
       S = { "<cmd>PackerStatus<cr>", "Status" },

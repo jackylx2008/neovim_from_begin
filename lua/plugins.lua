@@ -41,7 +41,8 @@ packer.init({
 -- Install your plugins here
 return packer.startup(function(use)
   use({ "wbthomason/packer.nvim", commit = "00ec5adef58c5ff9a07f11f45903b9dbbaa1b422" }) -- Have packer manage itself
-  use({ "nvim-lua/plenary.nvim" }) -- Useful lua functions used by lots of plugins
+  -- Load only when require
+  use { "nvim-lua/plenary.nvim", module = "plenary" }
 
   -- Colorschemes
   use({ 
@@ -65,6 +66,7 @@ return packer.startup(function(use)
         require("config.neogit").setup()
       end,
   })
+  -- Whichkey
   use({
       "folke/which-key.nvim",
       event = "VimEnter",
@@ -72,8 +74,61 @@ return packer.startup(function(use)
         require("config.whichkey").setup()
       end,
   })
+  -- IndentLine
+  use {
+    "lukas-reineke/indent-blankline.nvim",
+    event = "BufReadPre",
+    config = function()
+      require("config.indentblankline").setup()
+    end,
+  }
 
-  
+  -- Better icons
+  use {
+    "kyazdani42/nvim-web-devicons",
+    module = "nvim-web-devicons",
+    config = function()
+      require("nvim-web-devicons").setup { default = true }
+    end,
+  }
+
+  -- Better Comment
+  use {
+    "numToStr/Comment.nvim",
+    opt = true,
+    keys = { "gc", "gcc", "gbc" },
+    config = function()
+      require("Comment").setup {}
+    end,
+  }
+
+  -- Easy hopping
+  use {
+    "phaazon/hop.nvim",
+    cmd = { "HopWord", "HopChar1" },
+    config = function()
+      require("hop").setup {}
+    end,
+  }
+
+  -- Easy motion
+  use {
+    "ggandor/lightspeed.nvim",
+    keys = { "s", "S", "f", "F", "t", "T" },
+    config = function()
+      require("lightspeed").setup {}
+    end,
+  }
+  	
+  -- Markdown
+  use {
+    "iamcco/markdown-preview.nvim",
+    run = function()
+      vim.fn["mkdp#util#install"]()
+    end,
+    ft = "markdown",
+    cmd = { "MarkdownPreview" },
+  }
   
   -- -- My plugins here
   -- use({ "nvim-lua/plenary.nvim", commit = "968a4b9afec0c633bc369662e78f8c5db0eba249" }) -- Useful lua functions used by lots of plugins
