@@ -3,6 +3,7 @@
 -- C = ctrl
 local M = {}
 local opts = { noremap = true, silent = true }
+local expr_opts = { noremap = true, expr = true, silent = true }
 
 local term_opts = { silent = true }
 
@@ -25,6 +26,13 @@ keymap("n", "<C-i>", "<C-i>", opts)
 --   command_mode = "c",
 
 -- Normal --
+-- Center search results
+keymap("n", "n", "nzz", opts)
+keymap("n", "N", "Nzz", opts)
+
+-- Cancel search highlighting with ESC
+keymap("n", "<ESC>", ":nohlsearch<Bar>:echo<CR>", opts)
+
 -- Better window navigation
 keymap("n", "<M-h>", "<C-w>h", opts)
 keymap("n", "<M-j>", "<C-w>j", opts)
@@ -38,10 +46,10 @@ keymap("n", "<M-y>", ":tabclose<cr>", opts)
 keymap("n", "<M-\\>", ":tabonly<cr>", opts)
 
 -- Resize with arrows
-keymap("n", "<C-Up>", ":resize +2<CR>", opts)
-keymap("n", "<C-Down>", ":resize -2<CR>", opts)
-keymap("n", "<C-Left>", ":vertical resize +2<CR>", opts)
-keymap("n", "<C-Right>", ":vertical resize -2<CR>", opts)
+keymap("n", "<Up>", ":resize +2<CR>", opts)
+keymap("n", "<Down>", ":resize -2<CR>", opts)
+keymap("n", "<Left>", ":vertical resize +2<CR>", opts)
+keymap("n", "<Right>", ":vertical resize -2<CR>", opts)
 
 -- I hate typing these
 keymap("n", "H", "^", opts)
@@ -66,9 +74,13 @@ keymap("n", "<S-TAB>", ":bprevious<CR>", opts)
 
 -- Insert --
 -- Press jk fast to enter
+-- Better escape using jk in insert and terminal mode
 keymap("i", "jk", "<Esc>", opts)
 keymap("i", "kj", "<Esc>", opts)
 keymap("i", "jj", "<Esc>", opts)
+keymap("t", "jk", "<C-\\><C-n>", opts)
+keymap("t", "kj", "<C-\\><C-n>", opts)
+keymap("t", "jj", "<C-\\><C-n>", opts)
 
 -- Visual --
 -- Stay in indent mode
@@ -78,6 +90,7 @@ keymap("v", ">", ">gv", opts)
 -- Move text up and down
 keymap("v", "<A-j>", ":m .+1<CR>==", opts)
 keymap("v", "<A-k>", ":m .-2<CR>==", opts)
+-- Paste over currently selected text without yanking it
 keymap("v", "p", '"_dP', opts)
 -- keymap("v", "P", '"_dP', opts)
 
@@ -107,10 +120,10 @@ keymap("n", "<F5>", "<cmd>Telescope commands<CR>", opts)
 
 -- WARN: 下述配置功能未知
 keymap(
-	"n",
-	"<F6>",
-	[[:echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">" . " FG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#")<CR>]],
-	opts
+        "n",
+        "<F6>",
+        [[:echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">" . " FG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#")<CR>]],
+        opts
 )
 keymap("n", "<F7>", "<cmd>TSHighlightCapturesUnderCursor<cr>", opts)
 keymap("n", "<F8>", "<cmd>TSPlaygroundToggle<cr>", opts)
@@ -140,16 +153,16 @@ keymap("n", "<m-v>", "<cmd>lua require('lsp_lines').toggle()<cr>", opts)
 -- keymap("n", "<m-q>", "<cmd>:q<cr>", opts)
 
 M.show_documentation = function()
-	local filetype = vim.bo.filetype
-	if vim.tbl_contains({ "vim", "help" }, filetype) then
-		vim.cmd("h " .. vim.fn.expand("<cword>"))
-	elseif vim.tbl_contains({ "man" }, filetype) then
-		vim.cmd("Man " .. vim.fn.expand("<cword>"))
-	elseif vim.fn.expand("%:t") == "Cargo.toml" then
-		require("crates").show_popup()
-	else
-		vim.lsp.buf.hover()
-	end
+        local filetype = vim.bo.filetype
+        if vim.tbl_contains({ "vim", "help" }, filetype) then
+                vim.cmd("h " .. vim.fn.expand("<cword>"))
+        elseif vim.tbl_contains({ "man" }, filetype) then
+                vim.cmd("Man " .. vim.fn.expand("<cword>"))
+        elseif vim.fn.expand("%:t") == "Cargo.toml" then
+                require("crates").show_popup()
+        else
+                vim.lsp.buf.hover()
+        end
 end
 -- vim.api.nvim_set_keymap("n", "K", ":lua require('user.keymaps').show_documentation()<CR>", opts)
 
