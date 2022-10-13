@@ -129,6 +129,39 @@ return packer.startup(function(use)
     ft = "markdown",
     cmd = { "MarkdownPreview" },
   }
+
+  -- Status line
+  use {
+    "nvim-lualine/lualine.nvim",
+    event = "VimEnter",
+    config = function()
+      require("config.lualine").setup()
+    end,
+    requires = { "nvim-web-devicons" },
+  }
+
+  -- Treesitter
+  use {
+    "nvim-treesitter/nvim-treesitter",
+    run = ":TSUpdate",
+    config = function()
+      require("config.treesitter").setup()
+    end,
+  }
+  use {
+    "SmiteshP/nvim-gps",
+    requires = "nvim-treesitter/nvim-treesitter",
+    module = "nvim-gps",
+    config = function()
+      require("nvim-gps").setup()
+    end,
+  }
+
+  -- Bootstrap Neovim
+  if packer_bootstrap then
+    print "Restart Neovim required after installation!"
+    require("packer").sync()
+  end
   
   -- -- My plugins here
   -- use({ "nvim-lua/plenary.nvim", commit = "968a4b9afec0c633bc369662e78f8c5db0eba249" }) -- Useful lua functions used by lots of plugins
