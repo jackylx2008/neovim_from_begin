@@ -77,7 +77,7 @@ return packer.startup(function(use)
   -- IndentLine
   use {
     "lukas-reineke/indent-blankline.nvim",
-    event = "BufReadPre",
+    event = "VimEnter",
     config = function()
       require("config.indentblankline").setup()
     end,
@@ -96,6 +96,7 @@ return packer.startup(function(use)
   use {
     "numToStr/Comment.nvim",
     opt = true,
+    event = "VimEnter",
     keys = { "gc", "gcc", "gbc" },
     config = function()
       require("Comment").setup {}
@@ -105,7 +106,8 @@ return packer.startup(function(use)
   -- Easy hopping
   use {
     "phaazon/hop.nvim",
-    cmd = { "HopWord", "HopChar1" },
+    event = "VimEnter",
+    -- cmd = { "HopWord", "HopChar1" },
     config = function()
       require("hop").setup {}
     end,
@@ -148,6 +150,8 @@ return packer.startup(function(use)
       require("config.treesitter").setup()
     end,
   }
+
+  -- nvim-gps is deprecated
   use {
     "SmiteshP/nvim-gps",
     requires = "nvim-treesitter/nvim-treesitter",
