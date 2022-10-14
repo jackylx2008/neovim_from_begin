@@ -161,6 +161,18 @@ return packer.startup(function(use)
     end,
   }
 
+  -- nvim-tree
+  use {
+   "kyazdani42/nvim-tree.lua",
+   requires = {
+     "kyazdani42/nvim-web-devicons",
+   },
+   cmd = { "NvimTreeToggle", "NvimTreeClose" },
+     config = function()
+     require("config.nvimtree").setup()
+   end,
+  }
+
   -- Bootstrap Neovim
   if packer_bootstrap then
     print "Restart Neovim required after installation!"

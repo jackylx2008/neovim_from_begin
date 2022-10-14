@@ -46,10 +46,10 @@ keymap("n", "<M-y>", ":tabclose<cr>", opts)
 keymap("n", "<M-\\>", ":tabonly<cr>", opts)
 
 -- Resize with arrows
-keymap("n", "<Up>", ":resize +2<CR>", opts)
-keymap("n", "<Down>", ":resize -2<CR>", opts)
-keymap("n", "<Left>", ":vertical resize +2<CR>", opts)
-keymap("n", "<Right>", ":vertical resize -2<CR>", opts)
+keymap("n", "<C-Up>", ":resize +2<CR>", opts)
+keymap("n", "<C-Down>", ":resize -2<CR>", opts)
+keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
+keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
 -- I hate typing these
 keymap("n", "H", "^", opts)
