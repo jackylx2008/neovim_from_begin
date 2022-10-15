@@ -109,18 +109,18 @@ return packer.startup(function(use)
     event = "VimEnter",
     -- cmd = { "HopWord", "HopChar1" },
     config = function()
-      require("hop").setup {}
+      require("config.hop").setup()
     end,
   }
 
   -- Easy motion
-  use {
-    "ggandor/lightspeed.nvim",
-    keys = { "s", "S", "f", "F", "t", "T" },
-    config = function()
-      require("lightspeed").setup {}
-    end,
-  }
+  -- use {
+  --   "ggandor/lightspeed.nvim",
+  --   keys = { "s", "S", "f", "F", "t", "T" },
+  --   config = function()
+  --     require("lightspeed").setup {}
+  --   end,
+  -- }
   	
   -- Markdown
   use {
@@ -143,12 +143,26 @@ return packer.startup(function(use)
   }
 
   -- Treesitter
+  -- use {
+  --   "nvim-treesitter/nvim-treesitter",
+  --   run = ":TSUpdate",
+  --   config = function()
+  --     require("config.treesitter").setup()
+  --   end,
+  -- }
+
+  -- Treesitter
   use {
     "nvim-treesitter/nvim-treesitter",
+    -- opt = true,
+    -- event = "BufRead",
     run = ":TSUpdate",
     config = function()
       require("config.treesitter").setup()
     end,
+    requires = {
+      { "nvim-treesitter/nvim-treesitter-textobjects" },
+    },
   }
 
   -- nvim-gps is deprecated
@@ -172,6 +186,18 @@ return packer.startup(function(use)
      require("config.nvimtree").setup()
    end,
   }
+
+  -- Buffer line
+  use {
+    "akinsho/nvim-bufferline.lua",
+    event = "BufReadPre",
+    wants = "nvim-web-devicons",
+    config = function()
+      require("config.bufferline").setup()
+    end,
+  }
+
+
 
   -- Bootstrap Neovim
   if packer_bootstrap then
