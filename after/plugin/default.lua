@@ -92,12 +92,20 @@ vim.opt.termguicolors = true -- 设置采用True color
 
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
-vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
+-- vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
 -- vim.opt_local.formatoptions = vim.opt_local.formatoptions - {"c", "r", "o"}
 
 vim.cmd("filetype plugin indent on") -- 根据语言设置不同的缩进
 -- vim.opt.iskeyword:append({"-"}) -- treat dash separated words as a word text objec 字母含有'-'认为是一个单词
 -- setwindowlocal.signcolumn = "yes"
+
+-- Highlight on yank
+vim.cmd [[
+  augroup YankHighlight
+    autocmd!
+    autocmd TextYankPost * silent! lua vim.highlight.on_yank()
+  augroup end
+]]
 
 -- 原版
 --[[ vim.opt.backup = false                          -- creates a backup file
