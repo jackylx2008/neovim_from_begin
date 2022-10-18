@@ -89,14 +89,13 @@ function M.setup()
     a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Action" },
     b = { "<cmd>Telescope buffers<cr>", "Buffers" },
     e = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
-    -- e = { "<cmd>Lexplore<cr>", "Explorer" },
     v = { "<cmd>vsplit<cr>", "vsplit" },
     h = { "<cmd>split<cr>", "split" },
     w = { "<cmd>update!<CR>", "Save" },
     -- h = { "<cmd>nohlsearch<CR>", "No HL" },
     q = { '<cmd>lua require("user.functions").smart_quit()<CR>', "Quit" },
     ["/"] = { '<cmd>lua require("Comment.api").toggle.linewise.current()<CR>', "Comment" },
-    -- ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
+    ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
   
     -- :lua require'lir.float'.toggle()
     -- ["f"] = {

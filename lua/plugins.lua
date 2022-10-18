@@ -16,12 +16,12 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 -- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
-]])
+-- vim.cmd([[
+--   augroup packer_user_config
+--     autocmd!
+--     autocmd BufWritePost plugins.lua source <afile> | PackerSync
+--   augroup end
+-- ]])
 
 -- Use a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
@@ -198,36 +198,61 @@ return packer.startup(function(use)
   }
 
   -- nvim-cmp
-use {
-  "hrsh7th/nvim-cmp",
-  event = "InsertEnter",
-  opt = true,
-  config = function()
-    require("config.cmp").setup()
-  end,
-  wants = { "LuaSnip" },
-  requires = {
-    "hrsh7th/cmp-buffer",
-    "hrsh7th/cmp-path",
-    "hrsh7th/cmp-nvim-lua",
-    "ray-x/cmp-treesitter",
-    "hrsh7th/cmp-cmdline",
-    "saadparwaiz1/cmp_luasnip",
-    "hrsh7th/cmp-calc",
-    "f3fora/cmp-spell",
-    "hrsh7th/cmp-emoji",
-    {
-      "L3MON4D3/LuaSnip",
-      wants = "friendly-snippets",
-      config = function()
-        require("config.luasnip").setup()
-      end,
+  use {
+    "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
+    opt = true,
+    config = function()
+      require("config.cmp").setup()
+    end,
+    wants = { "LuaSnip" },
+    requires = {
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-nvim-lua",
+      "ray-x/cmp-treesitter",
+      "hrsh7th/cmp-cmdline",
+      "saadparwaiz1/cmp_luasnip",
+      "hrsh7th/cmp-calc",
+      "f3fora/cmp-spell",
+      "hrsh7th/cmp-emoji",
+      {
+        "L3MON4D3/LuaSnip",
+        wants = "friendly-snippets",
+        config = function()
+          require("config.luasnip").setup()
+        end,
+      },
+      "rafamadriz/friendly-snippets",
+      disable = false,
     },
-    "rafamadriz/friendly-snippets",
-    disable = false,
-  },
-}
+  }
+  -- Auto pairs
+  use {
+    "windwp/nvim-autopairs",
+    wants = "nvim-treesitter",
+    module = { "nvim-autopairs.completion.cmp", "nvim-autopairs" },
+    config = function()
+      require("config.autopairs").setup()
+    end,
+  }
 
+  -- Auto tag
+  use {
+    "windwp/nvim-ts-autotag",
+    wants = "nvim-treesitter",
+    event = "VimEnter",
+    config = function()
+      require("nvim-ts-autotag").setup { enable = true }
+    end,
+  }
+
+  -- End wise
+  use {
+    "RRethy/nvim-treesitter-endwise",
+    wants = "nvim-treesitter",
+    event = "VimEnter",
+  }
 
   -- Bootstrap Neovim
   if packer_bootstrap then
