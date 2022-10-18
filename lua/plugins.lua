@@ -1,5 +1,6 @@
 local fn = vim.fn
 
+
 -- Automatically install packer
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -213,10 +214,10 @@ return packer.startup(function(use)
       "ray-x/cmp-treesitter",
       "hrsh7th/cmp-cmdline",
       "saadparwaiz1/cmp_luasnip",
-      "hrsh7th/cmp-nvim-lsp",
+      -- "hrsh7th/cmp-nvim-lsp",
       -- "hrsh7th/cmp-nvim-lsp-signature-help",
       -- "hrsh7th/cmp-calc",
-      -- "f3fora/cmp-spell",
+      "f3fora/cmp-spell",
       -- "hrsh7th/cmp-emoji",
       {
         "L3MON4D3/LuaSnip",
@@ -267,6 +268,8 @@ return packer.startup(function(use)
     end,
     requires = {
       "williamboman/nvim-lsp-installer",
+      "hrsh7th/cmp-nvim-lsp",
+      "ray-x/lsp_signature.nvim",
     },
   }
   -- End of plugins
