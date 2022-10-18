@@ -26,8 +26,19 @@ local function on_attach(client, bufnr)
   require("config.lsp.keymaps").setup(client, bufnr)
 end
 
+local lsp_signature = require "lsp_signature"
+lsp_signature.setup {
+  bind = true,
+  handler_opts = {
+    border = "rounded",
+  },
+}
+
+local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+
 local opts = {
   on_attach = on_attach,
+  capabilities = capabilities,
   flags = {
     debounce_text_changes = 150,
   },
