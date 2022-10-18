@@ -95,7 +95,7 @@ function M.setup()
     -- h = { "<cmd>nohlsearch<CR>", "No HL" },
     q = { '<cmd>lua require("user.functions").smart_quit()<CR>', "Quit" },
     ["/"] = { '<cmd>lua require("Comment.api").toggle.linewise.current()<CR>', "Comment" },
-    ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
+    ["c"] = { "<cmd>bdelete!<CR>", "Close Buffer" },
   
     -- :lua require'lir.float'.toggle()
     -- ["f"] = {
@@ -110,7 +110,7 @@ function M.setup()
   
     b = {
       name = "Buffer",
-      c = { "<cmd>Bdelete!<CR>", "Close Buffer" },
+      c = { "<cmd>bdelete!<CR>", "Close Buffer" },
       D = { "<Cmd>%bd|e#|bd#<Cr>", "Delete all buffers" }, -- Closing all buffers except the current one.
     },
   

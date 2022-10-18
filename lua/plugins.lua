@@ -45,21 +45,21 @@ return packer.startup(function(use)
   use { "nvim-lua/plenary.nvim", module = "plenary" }
 
   -- Colorschemes
-  use({ 
+  use({
       "sainnhe/everforest",
       config = function()
         vim.cmd([[colorscheme everforest]])  
       end,
   })
   -- Startup Screen
-  use({ 
+  use({
       "goolord/alpha-nvim",
       config = function()
         require("config.alpha").setup()
       end,
   })
   -- Git
-  use({ 
+  use({
       "TimUntersberger/neogit",
       cmd = "Neogit",
       config = function()
@@ -121,7 +121,7 @@ return packer.startup(function(use)
   --     require("lightspeed").setup {}
   --   end,
   -- }
-  	
+
   -- Markdown
   use {
     "iamcco/markdown-preview.nvim",
@@ -213,9 +213,11 @@ return packer.startup(function(use)
       "ray-x/cmp-treesitter",
       "hrsh7th/cmp-cmdline",
       "saadparwaiz1/cmp_luasnip",
-      "hrsh7th/cmp-calc",
-      "f3fora/cmp-spell",
-      "hrsh7th/cmp-emoji",
+      "hrsh7th/cmp-nvim-lsp",
+      -- "hrsh7th/cmp-nvim-lsp-signature-help",
+      -- "hrsh7th/cmp-calc",
+      -- "f3fora/cmp-spell",
+      -- "hrsh7th/cmp-emoji",
       {
         "L3MON4D3/LuaSnip",
         wants = "friendly-snippets",
@@ -241,7 +243,7 @@ return packer.startup(function(use)
   use {
     "windwp/nvim-ts-autotag",
     wants = "nvim-treesitter",
-    event = "VimEnter",
+    event = "InsertEnter",
     config = function()
       require("nvim-ts-autotag").setup { enable = true }
     end,
@@ -251,9 +253,23 @@ return packer.startup(function(use)
   use {
     "RRethy/nvim-treesitter-endwise",
     wants = "nvim-treesitter",
-    event = "VimEnter",
+    event = "InsertEnter",
   }
 
+  -- LSP
+  use {
+    "neovim/nvim-lspconfig",
+    -- opt = true,
+    -- event = "BufReadPre",
+    wants = { "nvim-lsp-installer", "lsp_signature.nvim", "cmp-nvim-lsp" },
+    config = function()
+      require("config.lsp").setup()
+    end,
+    requires = {
+      "williamboman/nvim-lsp-installer",
+    },
+  }
+  -- End of plugins
   -- Bootstrap Neovim
   if packer_bootstrap then
     print "Restart Neovim required after installation!"
