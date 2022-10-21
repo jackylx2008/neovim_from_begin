@@ -16,6 +16,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
   vim.cmd([[packadd packer.nvim]])
 end
 
+
 -- Autocommand that reloads neovim whenever you save the plugins.lua file
 -- vim.cmd([[
 --   augroup packer_user_config
@@ -270,6 +271,8 @@ return packer.startup(function(use)
       "williamboman/nvim-lsp-installer",
       "hrsh7th/cmp-nvim-lsp",
       "ray-x/lsp_signature.nvim",
+      -- "folke/neodev.nvim",
+      "RRethy/vim-illuminate",
     },
   }
 
@@ -306,6 +309,29 @@ return packer.startup(function(use)
         },
       },
     }
+
+  -- -- trouble.nvim
+  -- use {
+  --   "folke/trouble.nvim",
+  --   event = "BufReadPre",
+  --   wants = "nvim-web-devicons",
+  --   cmd = { "TroubleToggle", "Trouble" },
+  --   config = function()
+  --     require("trouble").setup {
+  --       use_diagnostic_signs = true,
+  --     }
+  --   end,
+  -- }
+  --
+  -- -- lspsaga.nvim
+  -- use {
+  --   "tami5/lspsaga.nvim",
+  --   event = "VimEnter",
+  --   cmd = { "Lspsaga" },
+  --   config = function()
+  --     require("lspsaga").setup {}
+  --   end,
+  -- }
 
   -- End of plugins
   -- Bootstrap Neovim

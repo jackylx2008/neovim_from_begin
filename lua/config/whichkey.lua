@@ -123,7 +123,7 @@ function M.setup()
       m = { "<cmd>BrowseMdnSearch<cr>", "Mdn" },
     },
 
-    P = {
+    p = {
       name = "Packer",
       c = { "<cmd>PackerCompile profile=true<cr>", "Compile" },
       p = { "<cmd>PackerProfile<cr>", "Profile" },
@@ -217,7 +217,7 @@ function M.setup()
       r = { "<cmd>Telescope file_browser<cr>", "Browser" },
       w = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Current Buffer" },
     },
-      p = {
+      P = {
         name = "Project",
         p = { "<cmd>lua require'telescope'.extensions.project.project{}<cr>", "List" },
         s = { "<cmd>Telescope repo list<cr>", "Search" },
