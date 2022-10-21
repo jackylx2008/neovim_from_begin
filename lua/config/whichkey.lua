@@ -83,11 +83,11 @@ function M.setup()
     nowait = true, -- use `nowait` when creating keymaps
   }
 
- 
+
   local mappings = {
     -- ["1"] = "which_key_ignore",
     a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Action" },
-    b = { "<cmd>Telescope buffers<cr>", "Buffers" },
+    -- b = { "<cmd>Telescope buffers<cr>", "Buffers" },
     e = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
     v = { "<cmd>vsplit<cr>", "vsplit" },
     h = { "<cmd>split<cr>", "split" },
@@ -95,7 +95,7 @@ function M.setup()
     -- h = { "<cmd>nohlsearch<CR>", "No HL" },
     q = { '<cmd>lua require("user.functions").smart_quit()<CR>', "Quit" },
     ["/"] = { '<cmd>lua require("Comment.api").toggle.linewise.current()<CR>', "Comment" },
-    ["c"] = { "<cmd>bdelete!<CR>", "Close Buffer" },
+    -- ["c"] = { "<cmd>bdelete!<CR>", "Close Buffer" },
 
     -- :lua require'lir.float'.toggle()
     -- ["f"] = {
@@ -123,7 +123,7 @@ function M.setup()
       m = { "<cmd>BrowseMdnSearch<cr>", "Mdn" },
     },
 
-    p = {
+    P = {
       name = "Packer",
       c = { "<cmd>PackerCompile profile=true<cr>", "Compile" },
       p = { "<cmd>PackerProfile<cr>", "Profile" },
@@ -183,30 +183,45 @@ function M.setup()
       u = { "<cmd>lua require'dapui'.toggle()<cr>", "UI" },
       x = { "<cmd>lua require'dap'.terminate()<cr>", "Exit" },
     },
-  
+
     -- nnoremap <silent> <leader>B :lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
     -- nnoremap <silent> <leader>lp :lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
     -- require("dapui").open()
     -- require("dapui").close()
     -- require("dapui").toggle()
-  
+
     f = {
+      -- name = "Find",
+      -- b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
+      -- c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
+      -- f = { "<cmd>Telescope find_files<cr>", "Find files" },
+      -- t = { "<cmd>Telescope live_grep<cr>", "Find Text" },
+      -- s = { "<cmd>Telescope grep_string<cr>", "Find String" },
+      -- h = { "<cmd>Telescope help_tags<cr>", "Help" },
+      -- H = { "<cmd>Telescope highlights<cr>", "Highlights" },
+      -- i = { "<cmd>lua require('telescope').extensions.media_files.media_files()<cr>", "Media" },
+      -- l = { "<cmd>Telescope resume<cr>", "Last Search" },
+      -- M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
+      -- r = { "<cmd>Telescope oldfiles<cr>", "Recent File" },
+      -- R = { "<cmd>Telescope registers<cr>", "Registers" },
+      -- k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
+      -- C = { "<cmd>Telescope commands<cr>", "Commands" },
       name = "Find",
-      b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-      c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
-      f = { "<cmd>Telescope find_files<cr>", "Find files" },
+      f = { "<cmd>lua require('utils.finder').find_files()<cr>", "Files" },
+      d = { "<cmd>lua require('utils.finder').find_dotfiles()<cr>", "Dotfiles" },
+      b = { "<cmd>Telescope buffers<cr>", "Buffers" },
+      o = { "<cmd>Telescope oldfiles<cr>", "Old Files" },
       t = { "<cmd>Telescope live_grep<cr>", "Find Text" },
       s = { "<cmd>Telescope grep_string<cr>", "Find String" },
-      h = { "<cmd>Telescope help_tags<cr>", "Help" },
-      H = { "<cmd>Telescope highlights<cr>", "Highlights" },
-      i = { "<cmd>lua require('telescope').extensions.media_files.media_files()<cr>", "Media" },
-      l = { "<cmd>Telescope resume<cr>", "Last Search" },
-      M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
-      r = { "<cmd>Telescope oldfiles<cr>", "Recent File" },
-      R = { "<cmd>Telescope registers<cr>", "Registers" },
-      k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
-      C = { "<cmd>Telescope commands<cr>", "Commands" },
+      c = { "<cmd>Telescope commands<cr>", "Commands" },
+      r = { "<cmd>Telescope file_browser<cr>", "Browser" },
+      w = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Current Buffer" },
     },
+      p = {
+        name = "Project",
+        p = { "<cmd>lua require'telescope'.extensions.project.project{}<cr>", "List" },
+        s = { "<cmd>Telescope repo list<cr>", "Search" },
+      },
 
     -- g = {
     --   name = "Git",

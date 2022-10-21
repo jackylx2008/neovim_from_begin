@@ -48,7 +48,6 @@ function M.setup()
     -- auto_close = true,
     -- open_on_tab = false,
     -- hijack_cursor = false,
-    update_cwd = true,
     -- update_to_buf_dir = {
     --   enable = true,
     --   auto_open = true,
@@ -117,6 +116,7 @@ function M.setup()
         error = icons.diagnostics.Error,
       },
     },
+    update_cwd = true,
     update_focused_file = {
       enable = true,
       update_cwd = true,
@@ -152,6 +152,8 @@ function M.setup()
       relativenumber = false,
     },
   }
+
+  vim.g.nvim_tree_respect_buf_cwd = 1
 end
 
 return M
