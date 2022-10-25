@@ -280,8 +280,8 @@ return packer.startup(function(use)
         require("config.telescope").setup()
       end,
       cmd = { "Telescope" },
-      module = "telescope",
-      keys = { "<leader>f", "<leader>p" },
+      -- module = "telescope",
+      -- keys = { "<leader>f", "<leader>p" },
       wants = {
         "plenary.nvim",
         "popup.nvim",
