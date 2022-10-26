@@ -50,7 +50,7 @@ return packer.startup(function(use)
   use({
       "sainnhe/everforest",
       config = function()
-        vim.cmd([[colorscheme everforest]])  
+        vim.cmd([[colorscheme everforest]])
       end,
   })
   -- Startup Screen
@@ -339,7 +339,7 @@ return packer.startup(function(use)
     print "Restart Neovim required after installation!"
     require("packer").sync()
   end
-  
+
   -- -- My plugins here
   -- use({ "nvim-lua/plenary.nvim", commit = "968a4b9afec0c633bc369662e78f8c5db0eba249" }) -- Useful lua functions used by lots of plugins
   -- use({ "windwp/nvim-autopairs", commit = "fa6876f832ea1b71801c4e481d8feca9a36215ec" }) -- Autopairs, integrates with both cmp and treesitter
