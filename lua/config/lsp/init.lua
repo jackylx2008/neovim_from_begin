@@ -24,9 +24,6 @@ local servers = {
             [vim.fn.expand "$VIMRUNTIME/lua/vim/lsp"] = true,
           },
         },
-        completion = {
-          callSnippet = "Replace"
-        }
       },
     },
   },
@@ -36,6 +33,14 @@ local servers = {
   -- gopls = {},
   -- tsserver = {},
   -- rust_analyzer = {},
+}
+
+local lsp_signature = require "lsp_signature"
+lsp_signature.setup {
+  bind = true,
+  handler_opts = {
+    border = "rounded",
+  },
 }
 
 local function on_attach(client, bufnr)
@@ -54,13 +59,6 @@ local function on_attach(client, bufnr)
   require("config.lsp.highlighting").setup(client)
 end
 
-local lsp_signature = require "lsp_signature"
-lsp_signature.setup {
-  bind = true,
-  handler_opts = {
-    border = "rounded",
-  },
-}
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 

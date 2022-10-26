@@ -278,12 +278,12 @@ return packer.startup(function(use)
 
     use {
       "nvim-telescope/telescope.nvim",
-      opt = true,
+      -- opt = true,
       config = function()
         require("config.telescope").setup()
       end,
-      cmd = { "Telescope" },
-      -- module = "telescope",
+      -- cmd = { "Telescope" },
+      -- -- module = "telescope",
       -- keys = { "<leader>f", "<leader>p" },
       wants = {
         "plenary.nvim",
