@@ -237,8 +237,8 @@ keymap("", "<Up>", 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', { expr = true
 -- keymap("", "<F9>",":w<CR> :!clear && g++ % <CR>", opts)
 -- keymap("", "<C-F9>",":w<CR> :!clear && g++ % -o %< && ./%< <CR>", opts)
 
-keymap("n", "<leader>f", ":lua vim.lsp.buf.formatting()<CR>", opts)
-keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
+-- keymap("n", "<leader>f", ":lua vim.lsp.buf.formatting()<CR>", opts)
+-- keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 return M
 
 -- 原版

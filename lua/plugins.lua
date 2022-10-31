@@ -1,6 +1,5 @@
 local fn = vim.fn
 
-
 -- Automatically install packer
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -48,33 +47,33 @@ return packer.startup(function(use)
 
   -- Colorschemes
   use({
-      "sainnhe/everforest",
-      config = function()
-        vim.cmd([[colorscheme everforest]])
-      end,
+    "sainnhe/everforest",
+    config = function()
+      vim.cmd([[colorscheme everforest]])
+    end,
   })
   -- Startup Screen
   use({
-      "goolord/alpha-nvim",
-      config = function()
-        require("config.alpha").setup()
-      end,
+    "goolord/alpha-nvim",
+    config = function()
+      require("config.alpha").setup()
+    end,
   })
   -- Git
   use({
-      "TimUntersberger/neogit",
-      cmd = "Neogit",
-      config = function()
-        require("config.neogit").setup()
-      end,
+    "TimUntersberger/neogit",
+    cmd = "Neogit",
+    config = function()
+      require("config.neogit").setup()
+    end,
   })
   -- Whichkey
   use({
-      "folke/which-key.nvim",
-      event = "VimEnter",
-      config = function()
-        require("config.whichkey").setup()
-      end,
+    "folke/which-key.nvim",
+    event = "VimEnter",
+    config = function()
+      require("config.whichkey").setup()
+    end,
   })
   -- IndentLine
   use {
@@ -179,14 +178,14 @@ return packer.startup(function(use)
 
   -- nvim-tree
   use {
-   "kyazdani42/nvim-tree.lua",
-   requires = {
-     "kyazdani42/nvim-web-devicons",
-   },
-   cmd = { "NvimTreeToggle", "NvimTreeClose" },
-     config = function()
-     require("config.nvimtree").setup()
-   end,
+    "kyazdani42/nvim-tree.lua",
+    requires = {
+      "kyazdani42/nvim-web-devicons",
+    },
+    cmd = { "NvimTreeToggle", "NvimTreeClose" },
+    config = function()
+      require("config.nvimtree").setup()
+    end,
   }
 
   -- Buffer line
@@ -276,39 +275,39 @@ return packer.startup(function(use)
     },
   }
 
-    use {
-      "nvim-telescope/telescope.nvim",
-      -- opt = true,
-      config = function()
-        require("config.telescope").setup()
-      end,
-      -- cmd = { "Telescope" },
-      -- -- module = "telescope",
-      -- keys = { "<leader>f", "<leader>p" },
-      wants = {
-        "plenary.nvim",
-        "popup.nvim",
-        "telescope-fzf-native.nvim",
-        "telescope-project.nvim",
-        "telescope-repo.nvim",
-        "telescope-file-browser.nvim",
-        "project.nvim",
+  use {
+    "nvim-telescope/telescope.nvim",
+    -- opt = true,
+    config = function()
+      require("config.telescope").setup()
+    end,
+    -- cmd = { "Telescope" },
+    -- -- module = "telescope",
+    -- keys = { "<leader>f", "<leader>p" },
+    wants = {
+      "plenary.nvim",
+      "popup.nvim",
+      "telescope-fzf-native.nvim",
+      "telescope-project.nvim",
+      "telescope-repo.nvim",
+      "telescope-file-browser.nvim",
+      "project.nvim",
+    },
+    requires = {
+      "nvim-lua/popup.nvim",
+      "nvim-lua/plenary.nvim",
+      { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+      "nvim-telescope/telescope-project.nvim",
+      "cljoly/telescope-repo.nvim",
+      "nvim-telescope/telescope-file-browser.nvim",
+      {
+        "ahmedkhalf/project.nvim",
+        config = function()
+          require("project_nvim").setup {}
+        end,
       },
-      requires = {
-        "nvim-lua/popup.nvim",
-        "nvim-lua/plenary.nvim",
-        { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
-        "nvim-telescope/telescope-project.nvim",
-        "cljoly/telescope-repo.nvim",
-        "nvim-telescope/telescope-file-browser.nvim",
-        {
-          "ahmedkhalf/project.nvim",
-          config = function()
-            require("project_nvim").setup {}
-          end,
-        },
-      },
-    }
+    },
+  }
 
   -- -- trouble.nvim
   -- use {
