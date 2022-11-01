@@ -67,6 +67,21 @@ return packer.startup(function(use)
       require("config.neogit").setup()
     end,
   })
+  use {
+    "lewis6991/gitsigns.nvim",
+    event = "BufReadPre",
+    wants = "plenary.nvim",
+    requires = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("config.gitsigns").setup()
+    end,
+  }
+  use {
+    "tpope/vim-fugitive",
+    cmd = { "Git", "GBrowse", "Gdiffsplit", "Gvdiffsplit" },
+    requires = { "tpope/vim-rhubarb" },
+    -- wants = { "vim-rhubarb" },
+  }
   -- Whichkey
   use({
     "folke/which-key.nvim",
@@ -104,7 +119,15 @@ return packer.startup(function(use)
     end,
   }
 
-  -- Easy hopping
+  -- Better surround
+  use { "tpope/vim-surround", event = "InsertEnter" }
+
+  -- Motions
+  use { "andymass/vim-matchup", event = "CursorMoved" }
+  use { "wellle/targets.vim", event = "CursorMoved" }
+  use { "unblevable/quick-scope", event = "CursorMoved", disable = false }
+  use { "chaoren/vim-wordmotion", opt = true, fn = { "<Plug>WordMotion_w" } }
+    -- Easy hopping
   use {
     "phaazon/hop.nvim",
     event = "VimEnter",
@@ -113,15 +136,13 @@ return packer.startup(function(use)
       require("config.hop").setup()
     end,
   }
-
-  -- Easy motion
-  -- use {
-  --   "ggandor/lightspeed.nvim",
-  --   keys = { "s", "S", "f", "F", "t", "T" },
-  --   config = function()
-  --     require("lightspeed").setup {}
-  --   end,
-  -- }
+  use {
+    "ggandor/lightspeed.nvim",
+    keys = { "s", "S", "f", "F", "t", "T" },
+    config = function()
+      require("lightspeed").setup {}
+    end,
+  }
 
   -- Markdown
   use {
@@ -142,15 +163,15 @@ return packer.startup(function(use)
     end,
     requires = { "nvim-web-devicons" },
   }
-
-  -- Treesitter
-  -- use {
-  --   "nvim-treesitter/nvim-treesitter",
-  --   run = ":TSUpdate",
-  --   config = function()
-  --     require("config.treesitter").setup()
-  --   end,
-  -- }
+  -- nvim-gps is deprecated
+  use {
+    "SmiteshP/nvim-gps",
+    requires = "nvim-treesitter/nvim-treesitter",
+    module = "nvim-gps",
+    config = function()
+      require("nvim-gps").setup()
+    end,
+  }
 
   -- Treesitter
   use {
@@ -166,15 +187,6 @@ return packer.startup(function(use)
     },
   }
 
-  -- nvim-gps is deprecated
-  use {
-    "SmiteshP/nvim-gps",
-    requires = "nvim-treesitter/nvim-treesitter",
-    module = "nvim-gps",
-    config = function()
-      require("nvim-gps").setup()
-    end,
-  }
 
   -- nvim-tree
   use {
@@ -262,7 +274,7 @@ return packer.startup(function(use)
     "neovim/nvim-lspconfig",
     -- opt = true,
     -- event = "BufReadPre",
-    wants = { "nvim-lsp-installer", "lsp_signature.nvim", "cmp-nvim-lsp" },
+    wants = { "nvim-lsp-installer", "cmp-nvim-lsp", "lua-dev.nvim", "vim-illuminate", "null-ls.nvim" },
     config = function()
       require("config.lsp").setup()
     end,
@@ -271,7 +283,15 @@ return packer.startup(function(use)
       "hrsh7th/cmp-nvim-lsp",
       "ray-x/lsp_signature.nvim",
       -- "folke/neodev.nvim",
+      -- "folke/lua-dev.nvim",
       "RRethy/vim-illuminate",
+      "jose-elias-alvarez/null-ls.nvim",
+      {
+        "j-hui/fidget.nvim",
+        config = function()
+          require("fidget").setup {}
+        end,
+      },
     },
   }
 
@@ -334,10 +354,10 @@ return packer.startup(function(use)
 
   -- End of plugins
   -- Bootstrap Neovim
-  if packer_bootstrap then
-    print "Restart Neovim required after installation!"
-    require("packer").sync()
-  end
+  -- if packer_bootstrap then
+  --   print "Restart Neovim required after installation!"
+  --   require("packer").sync()
+  -- end
 
   -- -- My plugins here
   -- use({ "nvim-lua/plenary.nvim", commit = "968a4b9afec0c633bc369662e78f8c5db0eba249" }) -- Useful lua functions used by lots of plugins

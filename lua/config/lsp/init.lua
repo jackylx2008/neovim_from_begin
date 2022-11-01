@@ -59,7 +59,6 @@ local function on_attach(client, bufnr)
   require("config.lsp.highlighting").setup(client)
 end
 
-
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 local opts = {
@@ -74,6 +73,10 @@ local opts = {
 require("config.lsp.handlers").setup()
 
 function M.setup()
+  -- null-ls
+  require("config.lsp.null-ls").setup(opts)
+
+  -- Installer
   require("config.lsp.installer").setup(servers, opts)
 end
 
