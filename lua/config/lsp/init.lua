@@ -29,6 +29,7 @@ local servers = {
   },
   vimls = {},
   clangd = {},
+  -- ccls = {},
   marksman = {},
   -- gopls = {},
   -- tsserver = {},
