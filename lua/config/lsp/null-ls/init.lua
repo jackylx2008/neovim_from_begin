@@ -26,10 +26,10 @@ local sources = {
   b.formatting.black.with { extra_args = { "--fast" } }, -- Python
   b.formatting.isort,  -- Python
   with_root_file(b.formatting.stylua, "stylua.toml"),
-  -- with_root_file(b.formatting.clang_format, ".clang-format"),
+  with_root_file(b.formatting.clang_format, ".clang-format"),
 
   -- diagnostics
-  -- b.diagnostics.cppcheck,
+  b.diagnostics.cppcheck,
   b.diagnostics.write_good,
   b.diagnostics.flake8,
   with_root_file(b.diagnostics.selene, "selene.toml"),
