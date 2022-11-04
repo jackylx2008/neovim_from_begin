@@ -80,7 +80,7 @@ function M.setup()
   -- Installer
   require("config.lsp.installer").setup(servers, opts)
 
-  -- Cancl the warning
+  -- Cancl the warning in C/C++
   local notify = vim.notify
   vim.notify = function(msg, ...)
       if msg:match("warning: multiple different client offset_encodings") then
