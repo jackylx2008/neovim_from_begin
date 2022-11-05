@@ -45,12 +45,24 @@ return packer.startup(function(use)
   use { "nvim-lua/plenary.nvim", module = "plenary" }
 
   -- Colorschemes
+  -- use {
+  --   "sainnhe/everforest",
+  --   config = function()
+  --     vim.cmd [[colorscheme everforest]]
+  --   end,
+  -- }
   use {
-    "sainnhe/everforest",
+    "lunarvim/onedarker.nvim",
     config = function()
-      vim.cmd [[colorscheme everforest]]
+      vim.cmd [[colorscheme onedarker]]
     end,
   }
+  use "lunarvim/darkplus.nvim"
+  use "shaunsingh/nord.nvim" -- Colorscheme
+  use "sainnhe/gruvbox-material" -- Colorscheme
+  use "folke/tokyonight.nvim" -- Colorscheme
+  use "NTBBloodbath/doom-one.nvim"
+  use "Mofiqul/vscode.nvim" -- Colorscheme
   -- Startup Screen
   use {
     "goolord/alpha-nvim",
