@@ -136,7 +136,7 @@ return packer.startup(function(use)
   -- Motions
   use { "andymass/vim-matchup", event = "CursorMoved" }
   use { "wellle/targets.vim", event = "CursorMoved" }
-  use { "unblevable/quick-scope", event = "CursorMoved", disable = false }
+  -- use { "unblevable/quick-scope", event = "CursorMoved", disable = false }
   use { "chaoren/vim-wordmotion", opt = true, fn = { "<Plug>WordMotion_w" } }
   -- Easy hopping
   use {
