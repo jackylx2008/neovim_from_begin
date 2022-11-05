@@ -89,8 +89,6 @@ function M.setup()
     a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Action" },
     -- b = { "<cmd>Telescope buffers<cr>", "Buffers" },
     e = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
-    v = { "<cmd>vsplit<cr>", "vsplit" },
-    h = { "<cmd>split<cr>", "split" },
     w = { "<cmd>update!<CR>", "Save" },
     -- h = { "<cmd>nohlsearch<CR>", "No HL" },
     q = { '<cmd>lua require("user.functions").smart_quit()<CR>', "Quit" },
@@ -145,11 +143,11 @@ function M.setup()
 
     },
 
-    -- s = {
-    --   name = "Split",
-    --   s = { "<cmd>split<cr>", "HSplit" },
-    --   v = { "<cmd>vsplit<cr>", "VSplit" },
-    -- },
+    H = {
+      name = "Split",
+      s = { "<cmd>split<cr>", "HSplit" },
+      v = { "<cmd>vsplit<cr>", "VSplit" },
+    },
 
     s = {
       name = "Session",
@@ -255,6 +253,11 @@ function M.setup()
     --     p = { "<cmd>Gist -b -p<cr>", "Create Private" },
     --   },
     -- },
+    h = {
+      name = "Hop",
+      l = {"<cmd>HopLine<cr>", "Hop Line"},
+      w = {"<cmd>HopWord<cr>", "Hop Word"}
+    },
 
     -- l = {
     --   name = "LSP",
