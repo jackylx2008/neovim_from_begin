@@ -131,7 +131,16 @@ return packer.startup(function(use)
   }
 
   -- Better surround
-  use { "tpope/vim-surround", event = "InsertEnter" }
+  -- use { "tpope/vim-surround", event = "InsertEnter" }
+  use {
+    "kylechui/nvim-surround",
+    tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+    config = function()
+      require("nvim-surround").setup {
+        -- Configuration here, or leave empty to use defaults
+      }
+    end,
+  }
 
   -- Motions
   use { "andymass/vim-matchup", event = "CursorMoved" }
